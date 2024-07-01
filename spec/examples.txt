@@ -1,0 +1,6 @@
+example_id                          | status  | run_time        |
+----------------------------------- | ------- | --------------- |
+./spec/system/quotes_spec.rb[1:1:1] | passed  | 0.08447 seconds |
+./spec/system/quotes_spec.rb[1:1:2] | pending | 0.00001 seconds |
+./spec/system/quotes_spec.rb[1:1:3] | pending | 0 seconds       |
+./spec/system/quotes_spec.rb[1:1:4] | pending | 0 seconds       |
