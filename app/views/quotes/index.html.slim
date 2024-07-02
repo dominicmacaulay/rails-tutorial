@@ -1,5 +1,10 @@
 main.container
+  / = turbo_frame_tag "first_turbo_frame"
   .header
     h1 Quotes
-    = link_to "New quote", new_quote_path, class: "btn btn--primary"
-  = render @quotes
+    = link_to "New quote", new_quote_path, class: "btn btn--primary", data: { turbo_frame: dom_id(Quote.new) }
+
+  = turbo_frame_tag Quote.new
+
+  = turbo_frame_tag "quotes"
+    = render @quotes
