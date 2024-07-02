@@ -3,14 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe 'Quotes', type: :system do # rubocop:disable Metrics/BlockLength
-  before do
-    # driven_by(:rack_test)
-  end
+  include Warden::Test::Helpers
 
   describe 'visits the quotes site' do # rubocop:disable Metrics/BlockLength
-    let!(:quote) { create(:quote) }
+    let!(:user) { create(:user) }
+    let!(:quote) { create(:quote, company: user.company) }
+    before do
+      login_as user
+    end
 
-    it 'creates a new quote' do
+    it 'creates a new quote', :js do
       visit quotes_path
       expect(page).to have_selector('h1', text: 'Quotes')
 
@@ -30,7 +32,7 @@ RSpec.describe 'Quotes', type: :system do # rubocop:disable Metrics/BlockLength
       expect(page).to have_selector('h1', text: quote.name)
     end
 
-    it 'Updating a quote' do
+    it 'Updating a quote', :js do
       visit quotes_path
       expect(page).to have_selector('h1', text: 'Quotes')
 

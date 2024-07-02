@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 ruby '3.2.2'
 
 # my added gems
+gem 'devise'
 gem 'rubocop'
 gem 'simple_form'
 gem 'slim'
@@ -58,6 +59,7 @@ group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows]
   gem 'factory_bot_rails'
+  gem 'rolemodel_rails', github: 'RoleModel/rolemodel_rails'
   gem 'rspec-rails'
 end
 
@@ -76,4 +78,8 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
+end
+
+group :development, :test do
+  gem "factory_bot_rails"
 end
