@@ -1,3 +1,10 @@
+RSpec.describe 'line_item' do
+  it '#total_price returns the total price of the line item' do
+    line_item = create(:line_item)
+    expect(line_item.total_price).to eql 50
+  end
+end
+
 RSpec.describe 'line_item', type: :system do
   include Warden::Test::Helpers
   include ActionView::Helpers::NumberHelper
@@ -28,6 +35,8 @@ RSpec.describe 'line_item', type: :system do
     expect(page).to have_selector 'h1', text: 'Sample quote'
     expect(page).to have_text 'Animation'
     expect(page).to have_text number_to_currency(1234)
+
+    expect(page).to have_text number_to_currency(quote.total_price)
   end
 
   it 'Updating a line item', :js do
@@ -44,6 +53,8 @@ RSpec.describe 'line_item', type: :system do
 
     expect(page).to have_text 'Capybara article'
     expect(page).to have_text number_to_currency(1234)
+
+    expect(page).to have_text number_to_currency(quote.total_price)
   end
 
   it 'Destroying a line item', :js do
@@ -58,5 +69,7 @@ RSpec.describe 'line_item', type: :system do
     within "##{dom_id(line_item_date)}" do
       expect(page).to have_no_text line_item.name
     end
+
+    expect(page).to have_text number_to_currency(quote.total_price)
   end
 end

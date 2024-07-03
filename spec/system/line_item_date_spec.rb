@@ -15,6 +15,7 @@ end
 
 RSpec.describe 'line_item_date system', type: :system do # rubocop:disable Metrics/BlockLength
   include Warden::Test::Helpers
+  include ActionView::Helpers::NumberHelper
 
   let!(:user) { create(:user) }
   let!(:quote) { create(:quote, company: user.company) }
@@ -60,5 +61,7 @@ RSpec.describe 'line_item_date system', type: :system do # rubocop:disable Metri
     end
 
     expect(page).to have_no_text I18n.l(Date.current, format: :long)
+
+    expect(page).to have_text number_to_currency(quote.total_price)
   end
 end

@@ -3,7 +3,7 @@ FactoryBot.define do
     line_item_date { create(:line_item_date) }
     name { 'MyString' }
     description { 'MyText' }
-    quantity { 1 }
-    unit_price { 9.99 }
+    quantity { 5 }
+    unit_price { 10 }
   end
 end

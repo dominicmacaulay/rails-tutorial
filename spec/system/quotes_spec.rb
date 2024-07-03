@@ -2,6 +2,18 @@
 
 require 'rails_helper'
 
+RSpec.describe 'Quotes' do
+  let!(:quote) { create(:quote) }
+  let!(:line_item_date) { create(:line_item_date, quote:) }
+
+  it 'total_price returns the sum of the total price of all line items' do
+    create(:line_item, line_item_date:)
+    create(:line_item, line_item_date:)
+    create(:line_item, line_item_date:)
+    expect(quote.total_price).to eql 150
+  end
+end
+
 RSpec.describe 'Quotes', type: :system do # rubocop:disable Metrics/BlockLength
   include Warden::Test::Helpers
 
