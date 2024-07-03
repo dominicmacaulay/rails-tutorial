@@ -10,4 +10,8 @@ Rails.application.routes.draw do
   # root "posts#index"
   root to: 'pages#home'
   resources :quotes
+
+  resources :quotes do
+    resources :line_item_dates, except: %i[index show]
+  end
 end

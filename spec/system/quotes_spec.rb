@@ -6,7 +6,7 @@ RSpec.describe 'Quotes', type: :system do # rubocop:disable Metrics/BlockLength
   include Warden::Test::Helpers
 
   describe 'visits the quotes site' do # rubocop:disable Metrics/BlockLength
-    let!(:user) { create(:user) }
+    let!(:user) { create(:user, company: create(:company, :kpmg)) }
     let!(:quote) { create(:quote, company: user.company) }
     before do
       login_as user
